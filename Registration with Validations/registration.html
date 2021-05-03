@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Registration</title>
+    <script>
+        function display() {
+            DispWin = window.open('', 'NewWin', 'toolbar=no,status=no,width=300,height=200')
+            message = "<ul><li><b>First Name: </b>" + document.myForm.fname.value;
+            message += "<<li><b>Last Name: </b>" + document.myForm.lname.value;
+            message += "<li><b>Email Address: </b>" + document.myForm.email.value;
+            message += "<li><b>Gender: </b>" + document.myForm.gender.value;
+            message += "<li><b>Phone Number: </b>" + document.myForm.phone.value + "</ul>";
+            DispWin.document.write(message);
+        }
+        function validateForm() {
+            var fname = document.forms["myForm"]["fname"];
+            var lname = document.forms["myForm"]["lname"];
+            var email = document.forms["myForm"]["email"];
+            var password = document.forms["myForm"]["password"];
+            var pw_confirm = document.forms["myForm"]["pw_confirm"];
+            var phone = document.forms["myForm"]["phone"];
+
+            if (fname.value == "") {
+                window.alert("Please enter your first name.");
+                fname.focus();
+                return false;
+            }
+
+            if (lname.value == "") {
+                window.alert("Please enter your last name.");
+                lname.focus();
+                return false;
+            }
+
+            if (email.value == "") {
+                window.alert(
+                    "Please enter a valid e-mail address.");
+                email.focus();
+                return false;
+            }
+
+            if (password.value == "") {
+                window.alert("Please enter your password");
+                password.focus();
+                return false;
+            }
+
+            if (pw_confirm.value != password.value) {
+                window.alert("Please confirm your password");
+                password.focus();
+                return false;
+            }
+
+            if (phone.value == "") {
+                window.alert(
+                    "Please enter your telephone number.");
+                phone.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <form name="myForm" onsubmit="return validateForm()" method="post">
+            <h1><strong> My Registration Form</strong></h1>
+            <label for="fname">First name:</label>
+            <input type="text" id="fname" name="fname"><br><br>
+            <label for="lname">Last name:</label>
+            <input type="text" id="lname" name="lname"><br><br>
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="password">Password:</label>
+            <input id="text" type="password" id="password" name="password"><br><br>
+            <label for="pw_confirm">Password Confirmation:</label>
+            <input id="text" type="password" id="pw_confirm" name="pw_confirm"><br><br>
+
+            <p>Select your gender:</p>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label><br><br>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="numb" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"><br><br>
+
+            <p>Check to confirm you have read<input type="checkbox" id="check" name="check" value="check">agreement.
+            </p>
+
+            <p><input id="button" input type="submit" onClick="display();" value="Submit"></p>
+        </form>
+    </div>
+</body>
+
+</html>
